@@ -35,25 +35,25 @@ Beim Kollaborativen Arbeiten, an Texten kommt in vielen Fällen vor. Beispielswe
 Diese sowohl Trennung jedes Textes bzw. Arbeitsbereiches als auch die nahtlose Zusammenführung aller Textbausteine ist die Stärke von Git. Damit dies jedoch reibungslos funktioniert muss sich jeder Autor an gewisse Konventionen im Umgang mit Git halten, damit es zu keinen Komplikationen kommt. Diese Konventionen im Umgang mit einer Software werden als Workflows bezeichnet. Sie geben den Benutzern eines Programmes einen Leitfaden von Arbeitschritten, die Vor, Während bzw. nach der Arbeit am eigentlichen Text stattfinden. Diesen Workflow Möglichst einfach zu halte, war ein Hauptanliegen deser Arbeit. Außerdem soll im folgenden das GiTeX-Skript vorgestellt werden. Dieses Skript ermöglicht es die Workflows der einzelnen Autoren abzuarbeiten, ohne das jegliche Vorkenntnis über Git Vorliegt. Wichtig ist jedoch anzumerken, dass nicht alle Prozesse, die zum erstellen eines Kollaborativ geschriebenen Sammelbandes Führen vereinfacht werden. Mindestens eine Person, die weiterführendes Know-How mit der Verwendung von Git aufweist ist nötig, um ein Gitprojekt zu initialisieren und die Texte zusammenzuführen. Lediglich die einzelnen Autoren der Teiltexte werden bei ihren Workflows an die Hand genommen und müssen anstatt komplizierte Git eingaben mit diversen Parametern vorzunehmen, nur auf leicht verständliche Anweisungen und Fragen reagieren. Dies beschreibt den Anwendungsbereich bzw. den Hauptunzen des GiTeX-Scrips am besten.
 
 \subsection{Workflow}
-
+\lstset{frame = single, framerule=0pt, backgroundcolor = \color[gray]{0.9}}
 Wie kann nun Also ein expliziter Workflow zum erstellen eines Kollaborativ erarbeiteten Sammelbandes aussehen? Der in dieser Arbeit beschriebene Workflow teilt sich in drei größere Bereiche auf:
 
 \begin{description}
 \item[Initialisieren] Das \emph{Initialisieren} eines Git Projektes und der dazugehörigen \LaTeX -Datei liegt in Händen des Herausgebers und setzt grundlagen im Umgang mit Git sowie \LaTeX \ vorraus. Als erstes sollte eine \LaTeX -Datei mit allen gewünschten Pararmetern sowie einer Vorläufigen Abtrennung aller Kapitel mit \verb+\section+~\verb+{}+ erstellt werden. Sozusagen ein Leeres Grundgerüst, auf das alle Autoren des Textes zurückgreifen können. Anzumerken ist aber, das auch nachträglich noch Änderungen an den Layouteinstellungen sowie der Anzahl der Kapitel gemacht werden können. Dieses erste Grundgerüst dient lediglich den Autoren, damit sie wissen unter Welcher Überschrift sie mit der Arbeit an ihrem Text beginnen können.
 
 Nun beginnt bereits die Arbeit mit Git. Über die Komandozeile bzw. das Terminal des Computers bewegt man sich mit dem Befehl \verb+cd+ und dem entsprechenden Dateipfad in den Ordner in dem sich die \LaTeX -Datei befindet.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}, language=bash]
+\begin{lstlisting}[language=bash]
 cd /(Pfad zur LaTeX-Datei)
 \end{lstlisting}
  Hier lohnt es sich, nocheinmal zu Überprüfen, ob man sich im richtigen ordner befindet. Mit \verb+ls+ kann man sich alle datein im ordner anzeigen lassen. Wenn nur die \LaTeX-Datei zu sehen ist, kann man mit dem Befehl \verb+git init+ ein leeres Git-Repository erstellen.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}, language=bash]
+\begin{lstlisting}[language=bash]
 git init
 \end{lstlisting}
  Um die erstellte \LaTeX -Datei zum Commit vorzumerken benutzt man den Befehl:
-\begin{lstlisting}[backgroundcolor = \color{lightgray}, language=bash]
+\begin{lstlisting}[language=bash]
 git add (name und Endung der LaTeX-Datei)
 \end{lstlisting} Jetzt muss man die Datei nurnoch Commiten, und sie dem Git-Repository hinzuzufügen. Üblicherweise versieht man einen solchen Commit mit einer Nachricht, damit immer zu erkennen ist welche Änderungen in diesem Commit vorgenommen wurden. In diesem Fall bietet sich folgender befahl an um die gewünschte aktion auszuführen.
-\begin{lstlisting}[backgroundcolor = \color{lightgray}, language=bash]
+\begin{lstlisting}[language=bash]
 git commit --m "LaTeX-Grundgeruest erstellt
 \end{lstlisting}
 \item[Schreiben] 
