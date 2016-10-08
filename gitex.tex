@@ -34,13 +34,42 @@ Dieser Aufsatz befasst sich mit der Verwendung von Git und \LaTeX \ als Hilfsmit
 
 
 \section{GiTeX-script}
+\lstset{frame = single, framerule=0pt, backgroundcolor = \color[gray]{0.9}}
+\subsection{Nötige Programme}
+Bevor auf die Expliziten anwendungspunkte von Git und dem GiTeX-Skript eingegnagen wird, muss sichergestellt sein, das alle nötigen Programme vorinstalliert sind. Die Vorgehensweisen in dieser Arbeit und des Skriptes, setzen ein absolutes Minnimum an instalierten Programmen vorraus und benötigen keine unnötige Software. Vorerst stellt sich jedoch erst einmal die Frage nach dem Betriebssystem. Die hier beschriebenen Workflows, als auch das GiTeX-Skript wurden in \textbf{Windows} als auch auf \textbf{Linux} getestet. Dies heißt nicht, dass es nicht auch auf Macintosch Comutern möglihc ist, die Workflows bzw. das Skript zu nutzen, doch wurde es schlichtund ergreifend nicht gestest. Somit kann Dieser text auhc nicht erklären wie sich der Workflow unter Mac gestaltet oder ob es abweichungen zu den arbeitsabläufen unter Windows oder Linux gibt.
 
+Im Folgenden möchte ich eine kurze liste aller Nötigen Programme Vorstellen, die auf den jeweiligen Betribssystemen minimal nötig sind, um die in dem Text bescriebenen Workflows abzuarbeiten, bzw. das GiTeX-Skript zu nutzen.
+
+\begin{description}
+\item[Linux]
+Die installation der nötigen Programme unter Linux ist extrem einfach. man muss lediglich Git, \LaTeX \ und ein PDF anzeigeprogramm installieren. Dies geschieht über die folgenden Konsolenbefehle.
+\begin{lstlisting}[language=bash]
+sudo apt-get install git
+\end{lstlisting}
+Installiert Git
+\begin{lstlisting}[language=bash]
+sudo apt-get install texlive-full 
+\end{lstlisting}
+Dies ist der Befehl, um LaTeX mit allen Sprachpaketen und Features zu installieren.
+\begin{lstlisting}[language=bash]
+sudo apt-get install xpdf
+\end{lstlisting}
+Installiert ein sehr einfaches PDF anzeigeprogramm, das für unsere Bedürfnisse jedoch vollkommen ausreicht.
+
+
+\item[Windows]
+
+Unter Windows gestaltet sich die Installation der nötigen Programme wie gewöhnlich etwas schwieriger. Daher empfielt es sich, die seit dem neusten Update von Windows 10 vorhandene Ubuntu-Bash zu verwenden.\footnote{http://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/} Wer sich mit Linux jedoch nicht auseinandersetzen will oder eine ältere Version von Windows nutzt, für den gibt es dennoch Programme, die das Arbeiten mit \LaTeX und Git ermöglichen. Der Download für \textbf{Git} ist unter \verb+https://git-scm.com/download/win+ zu finden. bei der installation, kann einfach den Standardeinstellungen gefolgt werden. Um \LaTeX \ effizienz einzusetzen benötigt man 2 Programme. Eines, das für die Übersetzung der .tex Dateien zuständig ist, und im bestfall einen Editor, um die \LaTeX -Dateien zu editieren. Als Übersertzungsprogramm ist \textbf{MiKTeX} zu empfehlen. Den download hierzu findet man unter \verb+https://miktex.org/download+. Wiederum sind die Standardeinstellungen hierfür annehmbar. Zum editieren, kann der Standardeditor von Windows genutzt werden, besser eignet sich jedoch ein Programm wie TeXmaker. Dieses kann unter \verb+http://www.xm1math.net/texmaker/download.html#windows+ heruntergeladen und wiederum mit den vorgeschlagenen Einstellungen instaliert werden. Der Vorteil ist nun, das sie keinen gesonderten PDF-Viewer brauchen, da TeXmaker Editor und PDF anzeige in sich vereinigt.
+\end{description}
+
+Nun da alle Nötigen Programme zur Verwendun von LaTeX und Git installiert sind, können wir tiefer in die Materie eintachen und uns ein Beispiel anschauen, in dem Beide Programme, der Vorgeschlagene Workflow, sowie das GiTeX-Skript verwendung finden.
+
+\subsection{Kollaboratives Arbeiten mit \LaTeX \ und Git}
 Beim Kollaborativen Arbeiten, an Texten kommt in vielen Fällen vor. Beispielsweise, wenn Mehrere Autoren an texten für einen sammeband arbeite, oder bei Wissenschaftlichen Arbeiten, an denen wiederum auch mehrere Autoren arbeiten. Die Einfachste Möglichkeit diese Texte zusammenzutragen Wäre, jeden Autoren seinen text schreiben zu lassen und nach Fertigstellung jedes Textes, alle per Hand zusammenzufügen. Obwohl diese Vorgehensweise oft verwendet wird ist sie doch nicht sehr schnell. Da jeder Autor seinen Text erst fertigstellen muss, bevor die Arbeit an Zusammenstellung und Layout beginnen kann. Außerdem hat ein Herausgeber oder ein anderer Autor eines Textes erst zugriff auf alle Texte, sobald diese gesammelt vorliegen. An dieser Stelle kommt Git ins Spiel. Zwar arbeitet jeder Autor immer noch an seinem Kapitel, jedoch ist es möglich, das Layoutgrungerüst während jeder Autor an seinem Text arbeitet anzupassen. Außerdem kann ein Herausgeber die Arbeit eines Autoren begleiten und möglicherweise während der Entstehung Einfluss auf den Text nehmen. Außerdem kann der Vortschritt von Jedem Autor von jedem Ort der Welt aus verfolgt werden.
 
 Diese sowohl Trennung jedes Textes bzw. Arbeitsbereiches als auch die nahtlose Zusammenführung aller Textbausteine ist die Stärke von Git. Damit dies jedoch reibungslos funktioniert muss sich jeder Autor an gewisse Konventionen im Umgang mit Git halten, damit es zu keinen Komplikationen kommt. Diese Konventionen im Umgang mit einer Software werden als Workflows bezeichnet. Sie geben den Benutzern eines Programmes einen Leitfaden von Arbeitschritten, die Vor, Während bzw. nach der Arbeit am eigentlichen Text stattfinden. Diesen Workflow Möglichst einfach zu halte, war ein Hauptanliegen deser Arbeit. Außerdem soll im folgenden das GiTeX-Skript vorgestellt werden. Dieses Skript ermöglicht es die Workflows der einzelnen Autoren abzuarbeiten, ohne das jegliche Vorkenntnis über Git Vorliegt. Wichtig ist jedoch anzumerken, dass nicht alle Prozesse, die zum erstellen eines Kollaborativ geschriebenen Sammelbandes Führen vereinfacht werden. Mindestens eine Person, die weiterführendes Know-How mit der Verwendung von Git aufweist ist nötig, um ein Gitprojekt zu initialisieren und die Texte zusammenzuführen. Lediglich die einzelnen Autoren der Teiltexte werden bei ihren Workflows an die Hand genommen und müssen anstatt komplizierte Git eingaben mit diversen Parametern vorzunehmen, nur auf leicht verständliche Anweisungen und Fragen reagieren. Dies beschreibt den Anwendungsbereich bzw. den Hauptunzen des GiTeX-Scrips am besten.
 
 \subsection{Workflow}
-\lstset{frame = single, framerule=0pt, backgroundcolor = \color[gray]{0.9}}
 Wie kann nun Also ein expliziter Workflow zum erstellen eines Kollaborativ erarbeiteten Sammelbandes aussehen? Der in dieser Arbeit beschriebene Workflow teilt sich in drei größere Bereiche auf:
 
 \begin{description}
@@ -62,7 +91,17 @@ git add (name und Endung der LaTeX-Datei)
 git commit --m "LaTeX-Grundgeruest erstellt
 \end{lstlisting}
 Nachdem das Repository lokal vorliegt sollte man sich einen online-service suchen, um das Repository hochzuladen und online zugänglich zu machen. es gibt viele Services, die einfache Lösungen dafür anbieten. Einer der bekanntesten ist hierfür Git-Hub\footnote{https://github.com}
+
+Ist das Onlinerepository fertig erstellt, müssen das Lokale Repository nurnoch mit sienem Onlineäquivalent verknüpft werden und anschließend die Lokalen Dateien hochgeladen werden. dies geschieht mit den beiden Befahlen:
+\begin{lstlisting}[language=bash]
+git remote add origin (Link zum Onlinerepository)
+git push -u origin --all
+\end{lstlisting} 
+Die meisten Anbieter, zeigen einem direkt nach erstellen des onlinerepositorys meist diese beiden befehle selbsttätig an.
+
+Damit wäre der erste Schritt des Workflows, die \textbf{Initialisierung} des Projektes abgeschlossen. Dieser Schritt muss während eines gesamten Projektes nur ein mal ausgeführt werden. Selbst für eine neue Auflage oder Große Veränderungen am Sammelband ist dieser Arbeitschritt nicht mehr nötig. Erst wenn ein komplett neues Werk angestrebt wird, muss ein neues Projekt \textbf{Initialisiert} werden.
 \item[Schreiben] 
+
 \item[Zusammenführen] 
 \end{description}
 
