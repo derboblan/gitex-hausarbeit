@@ -35,7 +35,7 @@ Dieser Aufsatz befasst sich mit der Verwendung von Git und \LaTeX \ als Hilfsmit
 
 \section{GiTeX-script}
 \lstset{frame = single, framerule=0pt, backgroundcolor = \color[gray]{0.9}}
-\subsection{Nötige Programme}
+\subsection{Notwendige Programme}
 Bevor auf die Expliziten anwendungspunkte von Git und dem GiTeX-Skript eingegnagen wird, muss sichergestellt sein, das alle nötigen Programme vorinstalliert sind. Die Vorgehensweisen in dieser Arbeit und des Skriptes, setzen ein absolutes Minnimum an instalierten Programmen vorraus und benötigen keine unnötige Software. Vorerst stellt sich jedoch erst einmal die Frage nach dem Betriebssystem. Die hier beschriebenen Workflows, als auch das GiTeX-Skript wurden in \textbf{Windows} als auch auf \textbf{Linux} getestet. Dies heißt nicht, dass es nicht auch auf Macintosch Comutern möglihc ist, die Workflows bzw. das Skript zu nutzen, doch wurde es schlichtund ergreifend nicht gestest. Somit kann Dieser text auhc nicht erklären wie sich der Workflow unter Mac gestaltet oder ob es abweichungen zu den arbeitsabläufen unter Windows oder Linux gibt.
 
 Im Folgenden möchte ich eine kurze liste aller Nötigen Programme Vorstellen, die auf den jeweiligen Betribssystemen minimal nötig sind, um die in dem Text bescriebenen Workflows abzuarbeiten, bzw. das GiTeX-Skript zu nutzen.
@@ -58,8 +58,7 @@ Installiert ein sehr einfaches PDF anzeigeprogramm, das für unsere Bedürfnisse
 
 
 \item[Windows]
-
-Unter Windows gestaltet sich die Installation der nötigen Programme wie gewöhnlich etwas schwieriger. Daher empfielt es sich, die seit dem neusten Update von Windows 10 vorhandene Ubuntu-Bash zu verwenden.\footnote{http://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/} Wer sich mit Linux jedoch nicht auseinandersetzen will oder eine ältere Version von Windows nutzt, für den gibt es dennoch Programme, die das Arbeiten mit \LaTeX und Git ermöglichen. Der Download für \textbf{Git} ist unter \verb+https://git-scm.com/download/win+ zu finden. bei der installation, kann einfach den Standardeinstellungen gefolgt werden. Um \LaTeX \ effizienz einzusetzen benötigt man 2 Programme. Eines, das für die Übersetzung der .tex Dateien zuständig ist, und im bestfall einen Editor, um die \LaTeX -Dateien zu editieren. Als Übersertzungsprogramm ist \textbf{MiKTeX} zu empfehlen. Den download hierzu findet man unter \verb+https://miktex.org/download+. Wiederum sind die Standardeinstellungen hierfür annehmbar. Zum editieren, kann der Standardeditor von Windows genutzt werden, besser eignet sich jedoch ein Programm wie TeXmaker. Dieses kann unter \verb+http://www.xm1math.net/texmaker/download.html#windows+ heruntergeladen und wiederum mit den vorgeschlagenen Einstellungen instaliert werden. Der Vorteil ist nun, das sie keinen gesonderten PDF-Viewer brauchen, da TeXmaker Editor und PDF anzeige in sich vereinigt.
+Unter Windows gestaltet sich die Installation der nötigen Programme wie gewöhnlich etwas schwieriger. Daher empfielt es sich, die seit dem neusten Update von Windows 10 vorhandene Ubuntu-Bash zu verwenden.\footnote{http://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/} Wer sich mit Linux jedoch nicht auseinandersetzen will oder eine ältere Version von Windows nutzt, für den gibt es dennoch Programme, die das Arbeiten mit \LaTeX und Git ermöglichen. Der Download für \textbf{Git} ist unter \verb+https://git-scm.com/download/win+ zu finden. bei der installation, kann einfach den Standardeinstellungen gefolgt werden. Um \LaTeX \ effizienz einzusetzen benötigt man 2 Programme. Eines, das für die Übersetzung der .tex Dateien zuständig ist, und im bestfall einen Editor, um die \LaTeX -Dateien zu editieren. Als Übersertzungsprogramm ist \textbf{MiKTeX} zu empfehlen. Den download hierzu findet man unter \verb+https://miktex.org/download+. Wiederum sind die Standardeinstellungen hierfür annehmbar. Zum editieren, kann der Standardeditor von Windows genutzt werden, besser eignet sich jedoch ein Programm wie \textbf{TeXmaker}. Dieses kann unter \verb+http://www.xm1math.net/texmaker/download.html+ heruntergeladen und wiederum mit den vorgeschlagenen Einstellungen instaliert werden. Der Vorteil ist nun, das sie keinen gesonderten PDF-Viewer brauchen, da \textbf{TeXmaker} Editor und PDF anzeige in sich vereinigt.
 \end{description}
 
 Nun da alle Nötigen Programme zur Verwendun von LaTeX und Git installiert sind, können wir tiefer in die Materie eintachen und uns ein Beispiel anschauen, in dem Beide Programme, der Vorgeschlagene Workflow, sowie das GiTeX-Skript verwendung finden.
@@ -90,6 +89,14 @@ git add (name und Endung der LaTeX-Datei)
 \begin{lstlisting}[language=bash]
 git commit --m "LaTeX-Grundgeruest erstellt
 \end{lstlisting}
+
+Um die Arbeit der verscheidenen Autoren später zu vereinfachen, empfiehlt es sich bereits jezt für jedes der im \LaTeX -Grundgerüst vorgesehenen Kapitel ein Branch mit gleichem namen zu erstellen. Dies erleichtert die Bedienung des \textbf{GiTeX-Skrips}, is aber keineswegs zwingend notwendig, da dieser schritt auch Später und mit Hilfe des \textbf{GiTeX-Scrips} erledigt werden kann. Um die Branches zu erstellen, nuntzt man folgenden Befehl für jedes Kapitel bzw. jeden Autor einmal:
+
+\begin{lstlisting}[language=bash]
+git Branch (Name eines Kapitels oder Autors)
+\end{lstlisting}
+
+
 Nachdem das Repository lokal vorliegt sollte man sich einen online-service suchen, um das Repository hochzuladen und online zugänglich zu machen. es gibt viele Services, die einfache Lösungen dafür anbieten. Einer der bekanntesten ist hierfür Git-Hub\footnote{https://github.com}
 
 Ist das Onlinerepository fertig erstellt, müssen das Lokale Repository nurnoch mit sienem Onlineäquivalent verknüpft werden und anschließend die Lokalen Dateien hochgeladen werden. dies geschieht mit den beiden Befahlen:
@@ -101,29 +108,94 @@ Die meisten Anbieter, zeigen einem direkt nach erstellen des onlinerepositorys m
 
 Damit wäre der erste Schritt des Workflows, die \textbf{Initialisierung} des Projektes abgeschlossen. Dieser Schritt muss während eines gesamten Projektes nur ein mal ausgeführt werden. Selbst für eine neue Auflage oder Große Veränderungen am Sammelband ist dieser Arbeitschritt nicht mehr nötig. Erst wenn ein komplett neues Werk angestrebt wird, muss ein neues Projekt \textbf{Initialisiert} werden.
 \item[Schreiben] 
+Da die komplizierteneren Punkte des Workflows an diesem Punkt vom  \textbf{GiTeX-Skript} übernommen werden die Expliziten Arbeitsschritte des Workflows hier nur Angeschnitten. Für genauere Anleitungen ist das Kapitel \ref{Gitex} auf S. \pageref{Gitex} zu Rat zu ziehen.
 
-\item[Zusammenführen] 
+Grundsätzlich sind die Diversen Autoren, der Kapitel des Sammelbandes bzw. der gemeinsamen Arbeit, mit dem \textbf{GiTeX-Script}, dem Link zu dem Onlinerepository und der Angabe, unter Welcher Überschrift in der \LaTeX -Grundgerüstdatei sie ihre Arbeit vollziehen sollen, auszustatten. Nun muss das \textbf{GiTeX-Skript}, wie in Kapitel \ref{Gitex} beschrieben ausgeführt werden. Nun sollte im Arbeitsordner entweder die \LaTeX -Grundgerüstdatei, oder wenn der Autor bereits etwas geschrieben hat, der letzte Stand der Arbeit vorliegen. Nach Abschluss einer Arbeitssitzung, ist nun noch einmal das \textbf{GiTeX-Script} auszuführen, um die Änderungen in das Online-Repository hochzuladen.
+
+\item[Zusammenführen]
+Nachdem die Arbeiten der Autoren abgeschlossen sind oder sich auf einem akzeptablen Niveau für eine Erstauflage befinden, müssen die Einzelnen Kapitel zum Buch zusammengefügt werden. Dieser Arbeitsschritt sollte wiederum von jemandem ausgeführt werden, der Erfahrung mit dem Umgang mit Git und \LaTeX \ hat, da es hier die Meisten Komplikationen möglich sind. 
+
+Zunächst müssen alle Branches im aktuellsten zustand heruntergeladen Werden. Da es in Git selbst keine Funktion gibt, um alle Branches auf einmal zu aktualisieren verwendet man hierzu am besten das \textbf{GiTeX-Skript}, wie in Kapitel \ref{Gitex} beschrieben. 
+
+Danach ist wieder über folgenden Befehl, der Ordner in dem der \verb+.git+ Ordner sowie die \verb+.tex+ Datei aufzufinden sind, aufzusuchen.
+
+\begin{lstlisting}[language=bash]
+cd /(Pfad zur LaTeX-Datei & .git Ordner)
+\end{lstlisting}
+
+Nun sollte man (falls dies nicht schon im GiTeX-Skript ausgewählt wurde) auf den \verb+master+ Branch wechseln. Dies geschieht mit folgendem Befehl.
+ 
+\begin{lstlisting}[language=bash]
+git checkout master
+\end{lstlisting} 
+
+Jezt befinden wir uns auf dem theoretisch noch seid der Initialisierung noch unveränderten master Branch. Als nächstes müssen alle Branches der anderen Autoren, in diesen eingefügt werden. Um sich vorerste eine Liste aller vorhandenen Branches anzeigen zu lassen benutzt man am besten folgenden Befhel. 
+
+\begin{lstlisting}[language=bash]
+git branch
+\end{lstlisting} 
+
+nun folgt das Zusammenführen mit folgendem Befehl.
+
+\begin{lstlisting}[language=bash]
+git merge (Name eines Branches)
+\end{lstlisting} 
+
+Am wenigsten fehleranfällig ist dieser Prozess, wenn man einen Branch nach dem anderen in das Master Branch einfügt. Trotzdem ist es möglich, das Konflikte auftreten. Sollte dies nicht so sein, wird man aufgefordert eine Commitmessage einzugeben. Danach kann man direkt mit dem ächsten Branch weitermachen. Sollte ein Konflikt auftreten, wird man dazu aufgefordert, diesen zu beheben und danach die Änderungen zu Committen. Um den Konflikt zu beheben Öffnet man die .tex Datei. Der Konflikt wird durch Zeilen voller Sonderzeichen Markiert un muss nun behoben werden.. Meist reicht es jedoch aus, diese Sonderzeichen zu Löschen, ohne eine Größere Änderungen am Dokument vorzunehmen. Nachdem das Dokument gespeichert ist, müssen wir die änderungen Committen. Dies machen wir wiederum mit den uns bereits bekannten befehlen:
+
+\begin{lstlisting}[language=bash]
+git add (Name der LaTeX-Datei)
+git commit --m "(Commitmessage)"
+\end{lstlisting}
+
+Jezt kann mit dem Nächsten Branch fortgefahren werden. Sind alle Branches in der Master-Branch zusammengeführt, muss die nun entstandene \LaTeX -Datei nurnoch mehrere Male kompiliert werden, und ist dann fertig zum Druck.
+ 
 \end{description}
 
-Herausgeber:
-latex dati
-git init
-github
+\subsection{Anwendung und Funktionen des GiTeX-Scripts}\label{Gitex}
 
-Autoren:
-script
-download
-kapitel
-arbeiten upload
+Bevor auf die Anwendung bzw. Funktion des Skriptes eingenagen wird, sollte noch einmal die Notwendigkeit eines solchen Skriptes kurz umrissen werden. Git ist ein sehr mächtiges Hilfsmittel für das Kollaborative Arbeiten an Software und mit der Hilfe von \LaTeX \ auch an Texten. Leider ist die Verwendung von Git jedoch kompliziert, und man kann nicht von Jedem Autoren eines Kollaborativ entstehenden Textes die Einarbeitung in Git vorraussetzen. Daher entschied sich der AUtor dieses Textes genau für einen solchen fall ein Hilfsmittel zu entwickeln, das die AUtoren an die Hand nimmt und ihenn kryptische Eingaben erspart. Statdessen muss nur auf einfach verständliche Fragen reagiert werden um an der Kollaborativen Arbeit teilnehmen zu können.
 
-Herausgeber:
-mergen
+\subsubsection{Anwendung des GiTeX-Scripts}
 
-\subsection{Funktionen}
+Die Anwendung des Skriptes ist relativ einfach, leider aber nicht selbsterklärend. Zunächst muss das Skript in einen Selbst gewählten Arbeitsordner verschoben werden. Später, nach dem verwenden des Skriptes wird dies der Ordner sein, der für jedes Projekt einen neuen Unterordner beinhaltet in dem gearbeitet werden kann.
+Um das \textbf{GiTeX-Skript} nun zu starten müssen wir uns in einer Konsolenumgebung befinden. In \emph{Linux} verwenden wir hierfür das Standardterminal und navigieren mit dem Befehl \verb+cd /(Pfad zum GiTeX-Script)+ an den Ort in den sie das Script verschoben haben. Unter \emph{Windows} nutzen wir das mit Git mitinstallierte Git-Bash. um dies im richtigen ordner zu verwenden öffnet man schlichtundergreifend den Ordner in dem das Script liegt; rechtsklich auf eine leere stelle im Ordner und wählt nun \emph{Git Bash Here}. Nun da wir uns im richtigen Ordner befinden starten wir das Script mit dem Befehl:
 
-arbeitsschritte der autoren sind komplett automatisiert
+\begin{lstlisting}[language=bash]
+bash gitex
+\end{lstlisting}
+Sollten das Script umbenannt worden sein, so ist anstatt \emph{gitex} der neue Name des Scriptes zu wählen. Von nunan sollten sie nurnoch den anweisungen des Skriptes folgen müssen. Sollte sich das Skript aufgrund eines Fehlers schließen, so können sie es jederzeit mit dem oben genannten Befehl wieder aufrufen.
 
-\subsection{Anwendung}
+\subsubsection{Funktionen des GiTeX-Scripts}
+
+Nachdem das Skript gestartet ist, wird man als erstes gefragt, in welchem Ordner man arbeiten möchte. Beim ersten starten des Skriptes kann es sein, das noch keine Ordner im Ordner des Skriptes vorhanden sind. In diesem Fall tippt man einfach einen beliebigen Namen, des ersten Arbeitsorderns ein. Andernfalls sollte Über der Frage eine Liste aller verfügbaren Ordner zu sehen sein. Dann kann man den Namen eines bestehenden Ordners eintippen, und mit der Enter-Taste bestätigen. Nun Gelangt man in den Hauptauswahlbildschirm, in dem einem 3 Optionen zur Verfügung stehen. Diese Optionen können durh das Eintippen von 1, 2 oder 3 Ausgewählt werden. 
+\begin{description}
+\item[1: Download/Aktualisieren]
+\begin{description}
+\item[bei wiederholter Anwendung]
+Diese Option Aktualisiert alle Branches, die sich auf dem Online-Repository befinden und läd diese auf den Computer herunter. Da es keine in Git implementierte Funktion gibt, die diese aufgabe erledigt, kann dieser Menüpunkt auch für den Herausgeber des Buches interessant sein, da er den Arbeitsstand aller Autoren auf einmal herunterladen kann. Nachdem der Download zwei mal abgeschlossen ist (zwei mal, da beim ersten mal manchmal nicht alle änderungen übernommen werden) wird man gefragt, in welchem Kapitel bzw. Branch man arbeiten möchte. Um die auswahl zu erleichter, wird wiederum eine Liste aller Branches angezeigt. Auch das hinzufügen eines neuen Branches ist möglich. Um Tippfehler zu vermeiden muss dafür zunächst eine leereingabe mit Enter bestätigt werde, bevor man dazu aufgefordert wird, dem neuen Branch einen Namen zu geben. Nun gelangt man wieder in den Hautauswahlbildschirm zurück.
+
+\item[bei erster Anwendung]
+bei der ersten Anwendung des Skripts in einem neuen Ordner wird man Vorerst jedoch nach dem Link zum Onlinrepository (einfach mit Copy and Paste einfügen) sowie seinem Namen und seiner Email Gefragt. Dies dient der Initialisation des Git-Repositorys in dem neuen Ordner und zur Identifizierung des Autors bei späteren Commits.
+\end{description}
+\item[2: Änderungen hochladen/Speichern]
+Beim Hochladen/ Speicher, wird man zunächst nach dem Namen der \LaTeX -Datei gefragt, die compiliert und hochgeladen werden soll. Bei der Auwahl wird einem wieder durch eine Liste aller im Ordner befindlichen .tex Dateien geholfen. hat man seine Auwahl getroffen, so wird der Text vom Script 2 mal compiliert und in einer \emph{Linux}-Umgebung auch gleich mit XPdf angezeigt. Nun wird man gefragt, ob der Text so korrekt ist, und Hochgeladen werden kann. durch die Eingabe von y/n kann diese frage bejaht oder verneint werden. Bei Verneinung, wird der ebend beschriebene Prozess, nach ausbesserung wiederholt. Wird die Frage bejaht, wird man gefragt, ob weitere Dateien, dem Repository angehengt werden sollen. Dies Zählt auf Bilder oder \verb+.bib+-Dateien für eine Bibliographie ab.
+
+\textbf{Achtung:} Einmal der Branch Hinzugefügte Dateien, müssen nicht jedes mal erneut hinzugefügt werden. Sie werden automatisch bei jedem Commit der über das Script getätigt wird mit übertragen.
+
+Nun wird der Anwender aufgefordert, eine Commit-Message einzugeben, gefolgt von der Abfrage seiner Zugangsdaten zu dem Onlinerepository. Nachdem das Hochladen aller Dateien abgeschlossen ist, kommt man zurück in den Hauptauswahlbildschirm.
+
+\item[3: Beenden]
+Option 3 beendet schlicht und ergreifend das Script, und man kommt zurück in die Termina-Umgebung.
+\end{description}
+Der Workflow mit diesem Skript Kann also auf \emph{fünf} Schritte herunter gebrochen werden. Expliziter heißt das:
+\begin{description}
+\item[1.] Das Script Starten
+\item[2.] Das Lokale Repository angleichen, Änderungen herunterladen.
+\item[3.] in der \LaTeX -Datei Arbeiten und den Text schreien.
+\item[4.] Änderungen Hochladen.
+\item[5.] Das Skript schließen.
+\end{description}
 
 \section{Konklusion}
 
